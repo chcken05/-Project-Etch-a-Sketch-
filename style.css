@@ -1,8 +1,15 @@
 .container {
-  width: 560px;
-  height: 560px;
+  width: 510px;
+  height: 500px;
+
   display: flex;
   border: 1px solid black;
+}
+
+.gridRow {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
 }
 
 .cells {
