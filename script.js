@@ -1,6 +1,7 @@
 let size = 16;
 const btn = document.querySelector(".btn");
 const container = document.querySelector(".container");
+let opacity = 0.1;
 
 for (let i = 0; i < size; i++) {
   let gridRow = document.createElement("div");
@@ -16,13 +17,16 @@ let rows = document.querySelectorAll(".gridRow");
 
 cells.forEach((div) =>
   div.addEventListener("mouseover", () => {
-    div.classList.add("bg-color");
+    let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    div.style.backgroundColor = "#" + randomColor;
+    div.className = "colored";
   })
 );
 
 function deleteGrid() {
-  cells.forEach((el) => el.classList.remove("cells"));
-  rows.forEach((el) => el.classList.remove(".gridRow"));
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
 }
 
 function createGrid(size) {
@@ -41,12 +45,17 @@ function createGrid(size) {
 
   cells.forEach((div) =>
     div.addEventListener("mouseover", () => {
-      div.classList.add("bg-color");
+      let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+      div.style.backgroundColor = "#" + randomColor;
     })
   );
 }
 
 btn.addEventListener("click", () => {
   size = prompt("Enter the grid size you want");
-  createGrid(size);
+  if (size <= 100) {
+    createGrid(size);
+  } else {
+    alert("The maximum grid size is 100");
+  }
 });
